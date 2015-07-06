@@ -1,0 +1,7 @@
+lm1<-lm(count ~ season + holiday + weather + dow+ hour +
+  temp, data=train)
+earth.mod<-earth(count ~ season + holiday + weather + dow+
+                   hour+temp, data=train)
+plotmo(earth.mod)
+summary(earth.mod, digits = 2, style = "pmax")
+earth.mod<-earth(count ~ ., data=trainearth, Use.beta.cache=FALSE)
