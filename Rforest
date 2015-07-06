@@ -1,0 +1,19 @@
+setwd()
+dir()
+
+train <- read.csv("train.csv")
+test <- read.csv("test.csv")
+
+install.packages("lubridate") 
+install.packages('randomForest')
+library(lubridate)
+library(randomForest)
+
+test$count<-0
+
+fit <- randomForest(as.factor(count) ~ season + holiday + weather + dow+ hour +
+                      temp , data=train, ntree = 700, importance=TRUE)
+varImpPlot(fit)
+
+
+Prediction <- predict(fit, test)
